@@ -1,5 +1,5 @@
 {
-    "name": "A new game",
+    "name": "talk to Purple guy",
     "description": "",
     "dependencies": {
         "device": "*"
@@ -14,7 +14,7 @@
         "test.ts"
     ],
     "targetVersions": {
-        "target": "2.0.63",
+        "target": "4.0.10",
         "targetId": "arcade"
     },
     "supportedTargets": [

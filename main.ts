@@ -1,8 +1,12 @@
 namespace SpriteKind {
     export const text = SpriteKind.create()
+    export const NO_alternative = SpriteKind.create()
+    export const YES_alternative = SpriteKind.create()
+    export const Bonnie_alternative = SpriteKind.create()
+    export const Freddy_alternative = SpriteKind.create()
 }
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
-    mySprite = sprites.create(img`
+    mySprite.setImage(img`
         .......111.......
         .111..1fff1..111.
         1eee111fff111eee1
@@ -22,10 +26,138 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
         .1eeeeeeeeeeeee1.
         ..1eeeeeeeeeee1..
         ...11111111111...
+        `)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.NO_alternative, function (sprite, otherSprite) {
+    sprites.destroy(mySprite3)
+    sprites.destroy(mySprite4)
+    mySprite2.sayText("That's a schame.")
+    pause(2000)
+    mySprite2.sayText("")
+    pause(5000)
+    mySprite2.sayText("Are you by any chance under 12")
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.YES_alternative, function (sprite, otherSprite) {
+    sprites.destroy(mySprite3)
+    sprites.destroy(mySprite4)
+    mySprite2.sayText("Right...")
+    pause(2000)
+    mySprite2.sayText("So ho is you favorit?")
+    pause(2000)
+    mySprite3 = sprites.create(img`
+        f f f f f f f f f f f f 
+        f f f f f f f f f f f f 
+        f f f f f 1 1 f f f f f 
+        f 1 1 1 1 f f 1 1 1 1 f 
+        1 e e e 1 f f 1 e e e 1 
+        1 e e e f f f f e e e 1 
+        1 e e e e e e e e e e 1 
+        f 1 e e e e e e e e 1 f 
+        1 e e e e e e e e e e 1 
+        1 e e e f f e e f f e 1 
+        1 e e e f f e e f f e 1 
+        1 e e e e e e e e e e 1 
+        1 e e e e e f f f e e 1 
+        1 e e e e e e f e e e 1 
+        1 e e e e e e e e e e 1 
+        f 1 e e e f f e f f 1 f 
+        f f 1 e e e f f f 1 f f 
+        f f f 1 1 1 f f f 1 f f 
+        f f f f 1 f f 1 f f 1 f 
+        f f f f f 1 1 f 1 1 f f 
+        `, SpriteKind.Freddy_alternative)
+    mySprite4 = sprites.create(img`
+        f f f f f f f 1 1 f f f 
+        f 1 1 1 f f 1 6 6 1 f f 
+        1 6 6 6 1 f 1 6 6 1 f f 
+        1 6 6 6 6 1 1 6 6 1 f f 
+        f 1 6 6 6 1 1 6 6 1 f f 
+        f f 1 6 6 1 1 6 6 1 f f 
+        f f 1 6 6 6 6 6 6 1 f f 
+        f 1 6 6 6 6 6 6 6 6 1 f 
+        1 6 6 6 6 6 6 6 6 6 6 1 
+        1 6 6 6 f f 6 6 f f 6 1 
+        1 6 6 6 f f 6 6 f f 6 1 
+        1 6 6 6 6 6 6 6 6 6 6 1 
+        1 6 6 6 6 6 f f f 6 6 1 
+        1 6 6 6 6 6 6 f 6 6 6 1 
+        1 6 6 6 6 6 6 6 6 6 6 1 
+        f 1 6 6 6 2 2 6 2 2 1 f 
+        f f 1 6 6 6 2 2 2 1 f f 
+        f f f 1 1 1 2 2 2 1 f f 
+        f f f f 1 2 2 1 2 2 1 f 
+        f f f f f 1 1 f 1 1 f f 
+        `, SpriteKind.Bonnie_alternative)
+    mySprite5 = sprites.create(img`
+        f f f f f f f f f f f f 
+        f f f f f f f f f f f f 
+        f f f f f f f f f f f f 
+        f f f f f f f f f f f f 
+        f f f f f f f f f f f f 
+        f f f 1 1 1 1 1 1 f f f 
+        f f 1 5 5 5 5 5 5 1 f f 
+        f 1 5 5 5 5 5 5 5 5 1 f 
+        1 5 5 5 5 5 5 5 5 5 5 1 
+        1 5 5 5 f f 5 5 f f 5 1 
+        1 5 5 5 f f 5 5 f f 5 1 
+        1 5 5 5 5 5 5 5 5 5 5 1 
+        1 5 5 5 5 4 4 4 4 4 4 1 
+        1 5 5 5 4 4 4 4 4 4 4 4 
+        1 5 5 5 5 4 4 4 4 4 4 4 
+        f 1 5 5 5 1 5 1 5 1 5 1 
+        f f 1 5 5 5 5 5 5 1 1 1 
+        f f f 1 1 1 1 1 1 f f f 
+        f f f f f f f f f f f f 
+        f f f f f f f f f f f f 
         `, SpriteKind.Player)
+    mySprite6 = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Player)
+    mySprite3.setPosition(30, 110)
+    mySprite4.setPosition(60, 110)
+    mySprite5.setPosition(90, 110)
+    mySprite6.setPosition(120, 110)
+})
+controller.down.onEvent(ControllerButtonEvent.Released, function () {
+    mySprite.setImage(img`
+        .......111.......
+        .111..1fff1..111.
+        1eee111fff111eee1
+        1e44eefffffee44e1
+        1e4eeeeeeeeeee4e1
+        .1eefffeeefffee1.
+        ..1f111fef111f1..
+        .1ef181fef181fe1.
+        .1ef111fef111fe1.
+        .14444fffff44441.
+        144f444fff444f441
+        14f44444444444f41
+        1444f4444444f4441
+        .1f11f11f11f11f1.
+        .1fffffffffffff1.
+        .1f11f11f11f11f1.
+        .1eeeeeeeeeeeee1.
+        ..1eeeeeeeeeee1..
+        ...11111111111...
+        `)
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
-    mySprite = sprites.create(img`
+    mySprite.setImage(img`
         .......111.......
         .111..1fff1..111.
         1eee111fff111eee1
@@ -45,10 +177,56 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
         .1eeeeeeeeeeeee1.
         ..1eeeeeeeeeee1..
         ...11111111111...
-        `, SpriteKind.Player)
+        `)
+})
+controller.right.onEvent(ControllerButtonEvent.Released, function () {
+    mySprite.setImage(img`
+        .......111.......
+        .111..1fff1..111.
+        1eee111fff111eee1
+        1e44eefffffee44e1
+        1e4eeeeeeeeeee4e1
+        .1eefffeeefffee1.
+        ..1f111fef111f1..
+        .1ef181fef181fe1.
+        .1ef111fef111fe1.
+        .14444fffff44441.
+        144f444fff444f441
+        14f44444444444f41
+        1444f4444444f4441
+        .1f11f11f11f11f1.
+        .1fffffffffffff1.
+        .1f11f11f11f11f1.
+        .1eeeeeeeeeeeee1.
+        ..1eeeeeeeeeee1..
+        ...11111111111...
+        `)
+})
+controller.left.onEvent(ControllerButtonEvent.Released, function () {
+    mySprite.setImage(img`
+        .......111.......
+        .111..1fff1..111.
+        1eee111fff111eee1
+        1e44eefffffee44e1
+        1e4eeeeeeeeeee4e1
+        .1eefffeeefffee1.
+        ..1f111fef111f1..
+        .1ef181fef181fe1.
+        .1ef111fef111fe1.
+        .14444fffff44441.
+        144f444fff444f441
+        14f44444444444f41
+        1444f4444444f4441
+        .1f11f11f11f11f1.
+        .1fffffffffffff1.
+        .1f11f11f11f11f1.
+        .1eeeeeeeeeeeee1.
+        ..1eeeeeeeeeee1..
+        ...11111111111...
+        `)
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
-    mySprite = sprites.create(img`
+    mySprite.setImage(img`
         .......111.......
         .111..1fff1..111.
         1eee111fff111eee1
@@ -68,10 +246,33 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
         .1eeeeeeeeeeeee1.
         ..1eeeeeeeeeee1..
         ...11111111111...
-        `, SpriteKind.Player)
+        `)
+})
+controller.up.onEvent(ControllerButtonEvent.Released, function () {
+    mySprite.setImage(img`
+        .......111.......
+        .111..1fff1..111.
+        1eee111fff111eee1
+        1e44eefffffee44e1
+        1e4eeeeeeeeeee4e1
+        .1eefffeeefffee1.
+        ..1f111fef111f1..
+        .1ef181fef181fe1.
+        .1ef111fef111fe1.
+        .14444fffff44441.
+        144f444fff444f441
+        14f44444444444f41
+        1444f4444444f4441
+        .1f11f11f11f11f1.
+        .1fffffffffffff1.
+        .1f11f11f11f11f1.
+        .1eeeeeeeeeeeee1.
+        ..1eeeeeeeeeee1..
+        ...11111111111...
+        `)
 })
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
-    mySprite = sprites.create(img`
+    mySprite.setImage(img`
         .......111.......
         .111..1fff1..111.
         1eee111fff111eee1
@@ -91,49 +292,17 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
         .1eeeeeeeeeeeee1.
         ..1eeeeeeeeeee1..
         ...11111111111...
-        `, SpriteKind.Player)
+        `)
 })
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Player, function (sprite, otherSprite) {
-    if (controller.A.isPressed()) {
-        pause(2000)
-        mySprite2.setPosition(200, 0)
-        mySprite3.sayText("Right...")
-        pause(2000)
-        mySprite3.sayText("Is it your birth day today?")
-    } else if (controller.B.isPressed()) {
-        mySprite2 = sprites.create(img`
-            ................................................................................................
-            ................................................................................................
-            ................................................................................................
-            ................................................................................................
-            ................................................................................................
-            ................................................................................................
-            ................................................................................................
-            ................................................................................................
-            ................................................................................................
-            ................................................................................................
-            ................................................................................................
-            ................................................................................................
-            ................................................................................................
-            ................................................................................................
-            ................................................................................................
-            ................................................................................................
-            `, SpriteKind.text)
-        mySprite3.sayText("")
-        sprites.destroy(mySprite2)
-        mySprite3.sayText("That's a schame.")
-        pause(2000)
-        mySprite3.sayText("")
-        pause(5000)
-        mySprite3.sayText("Are you by any chance under 12")
-    }
-})
+let mySprite6: Sprite = null
+let mySprite5: Sprite = null
+let mySprite4: Sprite = null
+let mySprite3: Sprite = null
 let mySprite: Sprite = null
 let mySprite2: Sprite = null
-let mySprite3: Sprite = null
 info.setScore(0)
 scene.setBackgroundColor(15)
-mySprite3 = sprites.create(img`
+mySprite2 = sprites.create(img`
     fffffffffffffffffffffffffffccccccccccffffffffffffffffffffffffff
     fffffffffffffffffffffffffcccaaaaaaaacccffffffffffffffffffffffff
     ffffffffffffffffffffffffccaaaaaaaaaaaaccfffffffffffffffffffffff
@@ -215,8 +384,9 @@ mySprite3 = sprites.create(img`
     ffffffffffffffffffffaaaaaaaaaaffffffffaaaaaccccccffffffffffffff
     ffffffffffffffffffffaaaaaaaaaaffffffffaaaaaccccccffffffffffffff
     `, SpriteKind.Enemy)
+mySprite2.setPosition(80, 80)
 animation.runImageAnimation(
-mySprite3,
+mySprite2,
 [img`
     fffffffffffffffffffffffffffccccccccccffffffffffffffffffffffffff
     fffffffffffffffffffffffffcccaaaaaaaacccffffffffffffffffffffffff
@@ -383,49 +553,6 @@ mySprite3,
 1000,
 true
 )
-mySprite2 = sprites.create(img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.text)
-mySprite2.setPosition(80, 92)
-pause(2000)
-mySprite3.sayText("Hello")
-pause(2000)
-mySprite3.sayText("would you like to talk to me?")
-pause(2000)
-mySprite2 = sprites.create(img`
-    fff111fffffffff1fffff1f1111111fff11111fffffffffffffffff1111111fffffff11fffffff1fffff11111111ffff
-    ff1fff1ffffffff1fffff1f1ffffffff1fffff1ffffffffffffffff1ffffff1ffffff111ffffff1ffff1111111111fff
-    ff1fff1ffffffff1fffff1f1fffffff1fffffff1fffffffffffffff1ffffff1ffffff1f1ffffff1fff11ffffffff11ff
-    ff1fff1ffff111ff1fff1ff1fffffff1fffffffffffffffffffffff1ffffff1ff111f1f11fffff1ff11ffffffffff11f
-    ff1fff1ffff111ff1fff1ff1fffffff1fffffffffffffffffffffff1ffffff1ff111f1ff1fffff1f11ffffffffffff11
-    f1fffff1fff111fff1f1fff1fffffff1fffffffffffffffffffffff1ffffff1ff111f1ff11ffff1f11ffffffffffff11
-    f1fffff1fffffffff1f1fff1ffffffff1ffffffffffffffffffffff1ffffff1ffffff1fff1ffff1f11ffffffffffff11
-    111111111fffffffff1ffff1111ffffff11111fffffffffffffffff1111111fffffff1fff11fff1f11ffffffffffff11
-    1fffffff1fffffffff1ffff1ffffffffffffff1ffffffffffffffff1111111fffffff1ffff1fff1f11ffffffffffff11
-    1fffffff1fffffffff1ffff1fffffffffffffff1fffffffffffffff1ffffff1ffffff1ffff11ff1f11ffffffffffff11
-    1fffffff1ff111ffff1ffff1fffffffffffffff1fffffffffffffff1ffffff1ff111f1fffff1ff1f11ffffffffffff11
-    1fffffff1ff111ffff1ffff1fffffffffffffff1fffffffffffffff1ffffff1ff111f1fffff11f1f11ffffffffffff11
-    1fffffff1ff111ffff1ffff1fffffffffffffff1fffffffffffffff1ffffff1ff111f1ffffff1f1ff11ffffffffff11f
-    1fffffff1fffffffff1ffff1fffffff1fffffff1fffffffffffffff1ffffff1ffffff1ffffff111fff11ffffffff11ff
-    1fffffff1fffffffff1ffff1ffffffff1fffff1ffffffffffffffff1ffffff1ffffff1fffffff11ffff1111111111fff
-    1fffffff1fffffffff1ffff1111111fff11111fffffffffffffffff1111111fffffff1fffffff11fffff11111111ffff
-    `, SpriteKind.text)
-mySprite2.setPosition(80, 92)
 mySprite = sprites.create(img`
     .......111.......
     .111..1fff1..111.
@@ -447,4 +574,85 @@ mySprite = sprites.create(img`
     ..1eeeeeeeeeee1..
     ...11111111111...
     `, SpriteKind.Player)
-controller.moveSprite(mySprite, 100, 100)
+mySprite.setPosition(80, 10)
+controller.moveSprite(mySprite, 50, 50)
+mySprite.setStayInScreen(true)
+mySprite3 = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, 0)
+mySprite4 = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, 0)
+pause(2000)
+mySprite2.sayText("Hello")
+pause(2000)
+mySprite2.sayText("would you like to talk to me?")
+pause(2000)
+mySprite3 = sprites.create(img`
+    1fffff1f1111111fff11111ff
+    1fffff1f1ffffffff1fffff1f
+    1fffff1f1fffffff1fffffff1
+    f1fff1ff1fffffff1ffffffff
+    f1fff1ff1fffffff1ffffffff
+    ff1f1fff1fffffff1ffffffff
+    ff1f1fff1ffffffff1fffffff
+    fff1ffff1111ffffff11111ff
+    fff1ffff1ffffffffffffff1f
+    fff1ffff1fffffffffffffff1
+    fff1ffff1fffffffffffffff1
+    fff1ffff1fffffffffffffff1
+    fff1ffff1fffffffffffffff1
+    fff1ffff1fffffff1fffffff1
+    fff1ffff1ffffffff1fffff1f
+    fff1ffff1111111fff11111ff
+    `, SpriteKind.YES_alternative)
+mySprite4 = sprites.create(img`
+    11fffffff1fffff11111111ffff
+    111ffffff1ffff1111111111fff
+    1f1ffffff1fff11ffffffff11ff
+    1f11fffff1ff11ffffffffff11f
+    1ff1fffff1f11ffffffffffff11
+    1ff11ffff1f11ffffffffffff11
+    1fff1ffff1f11ffffffffffff11
+    1fff11fff1f11ffffffffffff11
+    1ffff1fff1f11ffffffffffff11
+    1ffff11ff1f11ffffffffffff11
+    1fffff1ff1f11ffffffffffff11
+    1fffff11f1f11ffffffffffff11
+    1ffffff1f1ff11ffffffffff11f
+    1ffffff111fff11ffffffff11ff
+    1fffffff11ffff1111111111fff
+    1fffffff11fffff11111111ffff
+    `, SpriteKind.NO_alternative)
+mySprite3.setPosition(60, 110)
+mySprite4.setPosition(106, 110)

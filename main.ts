@@ -9,6 +9,8 @@ namespace SpriteKind {
     export const MY_age = SpriteKind.create()
     export const why = SpriteKind.create()
     export const Ally = SpriteKind.create()
+    export const I_Forgot_what_happend = SpriteKind.create()
+    export const WTF = SpriteKind.create()
 }
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.setImage(img`
@@ -180,6 +182,26 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.YES_alternative, function (sprit
     mySprite4.setPosition(60, 110)
     mySprite5.setPosition(90, 110)
     mySprite6.setPosition(120, 110)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Bonnie_alternative, function (sprite, otherSprite) {
+    sprites.destroy(mySprite3)
+    sprites.destroy(mySprite4)
+    sprites.destroy(mySprite5)
+    sprites.destroy(mySprite6)
+    mySprite2.sayText("Huh?", 500, true)
+    pause(2000)
+    mySprite2.sayText("Thats also my favorite.", 3000, true)
+    pause(4000)
+    mySprite2.sayText("Coinsidence?", 1000, true)
+    pause(1000)
+    mySprite2.sayText("I think", 1000, true)
+    pause(1000)
+    mySprite2.sayText("I think NOT!!!")
+    pause(1000)
+    mySprite2.sayText("")
+    pause(5000)
+    mySprite2.sayText("Anny way...", 500, true)
+    pause(3000)
 })
 controller.down.onEvent(ControllerButtonEvent.Released, function () {
     mySprite.setImage(img`
@@ -455,6 +477,13 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Freddy_alternative, function (sp
         ....................eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee...........
         ....................eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee...........
         `, SpriteKind.Ally)
+    the_REAL_Freddy.setPosition(-30, 70)
+    scene.cameraShake(4, 100)
+    pause(2000)
+    scene.cameraShake(4, 100)
+    pause(2000)
+    scene.cameraShake(4, 100)
+    pause(2000)
     the_REAL_Freddy.setPosition(-30, 70)
     the_REAL_Freddy.setVelocity(10, 0)
     animation.runImageAnimation(
@@ -872,7 +901,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Freddy_alternative, function (sp
     scene.cameraShake(4, 100)
     pause(2000)
     scene.cameraShake(4, 100)
-    pause(900)
     animation.runImageAnimation(
     the_REAL_Freddy,
     [img`
@@ -1232,7 +1260,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Freddy_alternative, function (sp
     false
     )
     pause(3500)
-    the_REAL_Freddy.setPosition(18, 70)
     sprites.destroy(mySprite2)
     mySprite2 = sprites.create(img`
         ...............................................................
@@ -3855,6 +3882,72 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Freddy_alternative, function (sp
         `, SpriteKind.Ally)
     mySprite2.setPosition(80, 80)
     the_REAL_Freddy.setPosition(80, 103)
+    mySprite = sprites.create(img`
+        .......111.......
+        .111..1fff1..111.
+        1eee111fff111eee1
+        1e44eefffffee44e1
+        1e4eeeeeeeeeee4e1
+        .1eefffeeefffee1.
+        ..1f111fef111f1..
+        .1ef181fef181fe1.
+        .1ef111fef111fe1.
+        .14444fffff44441.
+        144f444fff444f441
+        14f44444444444f41
+        1444f4444444f4441
+        .1f11f11f11f11f1.
+        .1fffffffffffff1.
+        .1f11f11f11f11f1.
+        .1eeeeeeeeeeeee1.
+        ..1eeeeeeeeeee1..
+        ...11111111111...
+        `, SpriteKind.Player)
+    mySprite.setPosition(83, 10)
+    controller.moveSprite(mySprite, 50, 50)
+    mySprite.setStayInScreen(true)
+    pause(3000)
+    mySprite3 = sprites.create(img`
+        . . . . 5 5 5 5 5 5 5 5 5 . . . . 
+        . . . 5 5 5 5 5 5 5 5 5 5 5 . . . 
+        . . 5 5 5 5 5 5 5 5 5 5 5 5 5 . . 
+        . 5 5 5 f 5 5 5 5 5 5 5 f 5 5 5 . 
+        5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
+        5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
+        5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
+        5 5 5 2 2 2 2 1 1 1 2 2 2 2 5 5 5 
+        5 5 5 2 2 2 2 1 1 1 2 2 2 2 5 5 5 
+        5 5 5 2 2 2 2 2 2 2 2 2 2 2 5 5 5 
+        5 5 5 2 2 2 2 2 2 2 2 2 2 2 5 5 5 
+        5 5 5 2 2 2 2 2 2 2 2 2 2 2 5 5 5 
+        5 5 5 5 2 2 2 2 2 2 2 2 2 5 5 5 5 
+        . 5 5 5 5 2 3 3 3 3 3 2 9 5 5 5 . 
+        . . 5 5 5 3 3 3 3 3 3 3 9 5 5 . . 
+        . . . 5 5 3 3 3 3 3 3 3 9 5 . . . 
+        . . . . 5 5 5 5 5 5 5 5 9 9 . . . 
+        `, SpriteKind.I_Forgot_what_happend)
+    mySprite4 = sprites.create(img`
+        . . . . 5 5 5 5 5 5 5 5 5 . . . . 
+        . . . 5 5 5 5 5 5 5 5 5 5 5 . . . 
+        . . 5 5 5 f 5 5 5 5 5 f 5 5 5 . . 
+        . 5 5 5 5 f 5 5 5 5 5 f 5 5 5 5 . 
+        5 5 5 5 5 f 5 5 5 5 5 f 5 5 5 5 5 
+        5 5 5 5 5 f 5 5 5 5 5 f 5 5 5 5 5 
+        5 5 5 5 5 f 5 5 5 5 5 f 5 5 5 5 5 
+        5 5 5 5 5 f 5 5 5 5 5 f 5 5 5 5 5 
+        5 5 5 5 5 f 5 5 5 5 5 f 5 5 5 5 5 
+        5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
+        5 5 5 5 5 5 5 2 2 2 5 5 5 5 5 5 5 
+        5 5 5 5 5 5 2 2 2 2 2 5 5 5 5 5 5 
+        5 5 5 5 5 5 2 2 2 2 2 5 5 5 5 5 5 
+        . 5 5 5 5 5 2 2 2 2 2 5 5 5 5 5 . 
+        . . 5 5 5 5 5 2 2 2 5 5 5 5 5 . . 
+        . . . 5 5 5 5 5 5 5 5 5 5 5 . . . 
+        . . . . 5 5 5 5 5 5 5 5 5 . . . . 
+        `, SpriteKind.WTF)
+    mySprite3.setPosition(60, 20)
+    mySprite4.setPosition(106, 20)
+    mySprite2.setPosition(80, 80)
 })
 let the_REAL_Freddy: Sprite = null
 let mySprite6: Sprite = null
